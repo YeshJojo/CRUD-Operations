@@ -159,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).show();
     }
-
     public void readRecords() {
         layout.removeAllViews();
         List<studentDetails> students = new studentDBHandler(this).getAllData();
@@ -185,8 +184,10 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             TextView item = new TextView(this);
-            item.setPadding(8, 8, 8, 8);
+            item.setPadding(10, 10, 10, 10);
             item.setText("No records yet.");
+            item.setTextSize(20);
+            item.setGravity(Gravity.CENTER_HORIZONTAL);
             layout.addView(item);
         }
     }
