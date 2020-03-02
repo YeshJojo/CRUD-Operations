@@ -183,12 +183,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else {
-            TextView item = new TextView(this);
-            item.setPadding(10, 10, 10, 10);
-            item.setText("No records yet.");
-            item.setTextSize(20);
-            item.setGravity(Gravity.CENTER_HORIZONTAL);
-            layout.addView(item);
+            count.setVisibility(View.VISIBLE);
+            count.setGravity(Gravity.CENTER_HORIZONTAL);
+            count.setText("No Records found!");
         }
     }
 }
