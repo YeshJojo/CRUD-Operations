@@ -11,7 +11,7 @@ import java.util.List;
 
 public class studentDBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "notes_db";
+    private static final String DATABASE_NAME = "student_db";
     public static final String TABLE_NAME = "student";
 
     public static final String COLUMN_ID = "id";
@@ -60,31 +60,6 @@ public class studentDBHandler extends SQLiteOpenHelper {
         db.delete(TABLE_NAME, COLUMN_ID + " = ?", new String[] {id});
         db.close();
     }
-    public int getDataCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-        int count = cursor.getCount();
-        cursor.close();
-        return count;
-    }
-    public studentDetails getData(long id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(TABLE_NAME,
-                new String[]{COLUMN_ID, COLUMN_NAME, COLUMN_SEM}, COLUMN_ID + "=?",
-                new String[]{String.valueOf(id)}, null, null, null, null);
-
-        if (cursor != null)
-            cursor.moveToFirst();
-        studentDetails note = new studentDetails(
-                cursor.getInt(cursor.getColumnIndex(COLUMN_ID)),
-                cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
-                cursor.getInt(cursor.getColumnIndex(COLUMN_SEM)));
-        cursor.close();
-        return note;
-    }
-
     public List<studentDetails> getAllData() {
         List<studentDetails> notes = new ArrayList<>();
         String selectQuery = "SELECT  * FROM " + TABLE_NAME + " ORDER BY " + COLUMN_NAME + " DESC";
